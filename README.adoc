@@ -1,0 +1,50 @@
+:toc: macro
+:toclevels: 3
+:toc-title: Table of Contents
+
+ifdef::env-github[]
+:tip-caption: :bulb:
+:note-caption: :point_right:
+:important-caption: :loudspeaker:
+:caution-caption: :rotating_light:
+:warning-caption: :warning:
+endif::[]
+
+= Advent Of Code 2023
+
+toc::[]
+
+== About
+Solutions for the https://adventofcode.com/2023/:[advent of code] of 2023.
+
+== Solutions
+
+[cols="^h,^1,^1"]
+|===
+| Day | Challenge 1 | Challenge 2
+
+|01|👍|
+|02|👍|👍
+|03| |
+|04|👍|
+|05| |
+|06| |
+|07| |
+|08| |
+|09| |
+|10| |
+|11| |
+|12| |
+|13| |
+|14| |
+|15| |
+|16| |
+|17| |
+|18| |
+|19| |
+|20| |
+|21| |
+|22| |
+|23| |
+|24| |
+
