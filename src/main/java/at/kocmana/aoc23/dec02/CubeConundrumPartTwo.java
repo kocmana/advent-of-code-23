@@ -8,29 +8,24 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-public class CubeConundrumPartOne {
-
-  private static final int MAX_NUMBER_OF_RED_CUBES = 12;
-  private static final int MAX_NUMBER_OF_GREEN_CUBES = 13;
-  private static final int MAX_NUMBER_OF_BLUE_CUBES = 14;
+public class CubeConundrumPartTwo {
 
   public static void main(String[] args) {
     var puzzleInput = ResourceToString.from("dec02", "CubeConundrum.txt");
-    var result = getSumOfPossibleGameIndexesForInput(puzzleInput);
+    var result = getSumOfPowers(puzzleInput);
     System.out.printf("Result: %d%n", result);
   }
 
-  static int getSumOfPossibleGameIndexesForInput(String input) {
+  static int getSumOfPowers(String input) {
     return parseGamesFromInput(input).stream()
-        .map(CubeConundrumPartOne::analyzeGame)
-        .filter(CubeConundrumPartOne::isPossibleResult)
-        .mapToInt(GameStatistics::gameId)
+        .map(CubeConundrumPartTwo::analyzeGame)
+        .mapToInt(CubeConundrumPartTwo::calculatePower)
         .sum();
   }
 
   static List<Game> parseGamesFromInput(String input) {
     return input.lines()
-        .map(CubeConundrumPartOne::parseGameFromLine)
+        .map(CubeConundrumPartTwo::parseGameFromLine)
         .toList();
   }
 
@@ -42,7 +37,7 @@ public class CubeConundrumPartOne {
     var drawsToParse = gameIdAndResults[1].split("(;|,)");
     var drawResults = Arrays.stream(drawsToParse)
         .map(String::strip)
-        .map(CubeConundrumPartOne::toDrawResult)
+        .map(CubeConundrumPartTwo::toDrawResult)
         .toList();
 
     return new Game(gameId, drawResults);
@@ -61,10 +56,10 @@ public class CubeConundrumPartOne {
     );
   }
 
-  static boolean isPossibleResult(GameStatistics gameStatistics) {
-    return gameStatistics.maxNumberOfRedCubesDrawn() <= MAX_NUMBER_OF_RED_CUBES
-        && gameStatistics.maxNumberOfGreenCubesDrawn() <= MAX_NUMBER_OF_GREEN_CUBES
-        && gameStatistics.maxNumberOfBlueCubesDrawn() <= MAX_NUMBER_OF_BLUE_CUBES;
+  static int calculatePower(GameStatistics gameStatistics) {
+    return gameStatistics.minNumberOfRedCubesDrawn()
+        * gameStatistics.minNumberOfGreenCubesDrawn()
+        * gameStatistics.minNumberOfBlueCubesDrawn();
   }
 
   private static DrawResult toDrawResult(String cubeInput) {
@@ -93,8 +88,8 @@ public class CubeConundrumPartOne {
 
   record GameStatistics(
       int gameId,
-      int maxNumberOfGreenCubesDrawn,
-      int maxNumberOfRedCubesDrawn,
-      int maxNumberOfBlueCubesDrawn
+      int minNumberOfGreenCubesDrawn,
+      int minNumberOfRedCubesDrawn,
+      int minNumberOfBlueCubesDrawn
   ) {}
 }
