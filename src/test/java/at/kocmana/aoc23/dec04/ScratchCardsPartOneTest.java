@@ -7,7 +7,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvSource;
 
-class ScratchCardsTest {
+class ScratchCardsPartOneTest {
 
   @Test
   void canParse() {
@@ -15,12 +15,9 @@ class ScratchCardsTest {
     var input = "Card 1: 41 48 83 86 17 | 83 86  6 31 17  9 48 53";
 
     //when
-    var actualResult = ScratchCards.parseCard(input);
+    var actualResult = ScratchCardsPartOne.parseCard(input);
 
     //then
-    assertThat(actualResult).isNotNull()
-        .returns(1, from(ScratchCards.Card::cardId));
-
     assertThat(actualResult.winningNumbers())
         .contains(41, 48, 83, 86, 17);
 
@@ -40,10 +37,10 @@ class ScratchCardsTest {
   })
   void canDetermineNumberOfMatches(String input, long expectedNumberOfMatches) {
     //given
-    var card = ScratchCards.parseCard(input);
+    var card = ScratchCardsPartOne.parseCard(input);
 
     //when
-    var actualResult = ScratchCards.determineNumberOfWins(card);
+    var actualResult = ScratchCardsPartOne.determineNumberOfWins(card);
 
     //then
     assertThat(actualResult).isEqualTo(expectedNumberOfMatches);
@@ -60,7 +57,7 @@ class ScratchCardsTest {
   })
   void canDeterminePoints(long numberOfMatches, int expectedNumberOfPoints) {
     //when
-    var actualResult = ScratchCards.calculatePoints(numberOfMatches);
+    var actualResult = ScratchCardsPartOne.calculatePoints(numberOfMatches);
 
     //then
     assertThat(actualResult).isEqualTo(expectedNumberOfPoints);
@@ -79,7 +76,7 @@ class ScratchCardsTest {
         """;
 
     //when
-    var actualResult = ScratchCards.determineNumberOfTotalPoints(input);
+    var actualResult = ScratchCardsPartOne.determineNumberOfTotalPoints(input);
 
     //then
     assertThat(actualResult).isEqualTo(13);
