@@ -23,12 +23,6 @@ public class ScratchCardsPartTwo {
     game.play(puzzleInput);
   }
 
-  public void play(String input) {
-    generateAllWinningCards(input);
-    var result = getNumberOfCards();
-    System.out.printf("Result: %d", result);
-  }
-
   static List<Card> parseCards(String input) {
     return input.lines()
         .map(ScratchCardsPartTwo::parseCard)
@@ -68,6 +62,12 @@ public class ScratchCardsPartTwo {
     return new CardResult(card.cardId(), wins);
   }
 
+  public void play(String input) {
+    generateAllWinningCards(input);
+    var result = getNumberOfCards();
+    System.out.printf("Result: %d", result);
+  }
+
   void generateAllWinningCards(String input) {
     parseCards(input).stream()
         .map(ScratchCardsPartTwo::determineNumberOfWins)
@@ -78,7 +78,6 @@ public class ScratchCardsPartTwo {
   void addNewCards(CardResult result) {
     //first add self
     var amountOfBaseCards = cardCounter.increase(result.cardId(), 1);
-
 
     //then add the next cards starting from this index
     IntStream.rangeClosed(1, result.numberOfWins())
@@ -104,14 +103,7 @@ record CardResult(
 }
 
 class CardCounter {
-  private ConcurrentMap<Integer, AtomicLong> cardCounter = new ConcurrentHashMap<>();
-
-  long get(int gameId) {
-    if (!cardCounter.containsKey(gameId)) {
-      return 0;
-    }
-    return cardCounter.get(gameId).get();
-  }
+  private final ConcurrentMap<Integer, AtomicLong> cardCounter = new ConcurrentHashMap<>();
 
   long increase(int cardId, long times) {
     if (!cardCounter.containsKey(cardId)) {
@@ -125,7 +117,6 @@ class CardCounter {
   long getTotalNumberOfCards() {
     return cardCounter.values().stream()
         .map(AtomicLong::get)
-
         .reduce(0L, Long::sum);
   }
 }
