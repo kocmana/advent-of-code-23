@@ -1,10 +1,8 @@
 package at.kocmana.aoc23.dec04;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.RepeatedTest;
 import org.junit.jupiter.api.Test;
 
 class ScratchCardsPartTwoTest {
@@ -17,7 +15,7 @@ class ScratchCardsPartTwoTest {
   }
 
   @Test
-  void canGenerateCards(){
+  void canGenerateCards() {
     //given
     var cardResult = new CardResult(1, 3);
 
@@ -29,15 +27,15 @@ class ScratchCardsPartTwoTest {
   }
 
   @Test
-  void canGenerateCardsOnNoWin(){
+  void canGenerateCardsOnNoWin() {
     //given
-    var cardResult = new CardResult(1, 1);
+    var cardResult = new CardResult(1, 0);
 
     //when
     underTest.addNewCards(cardResult);
 
     //then
-    assertThat(underTest.getNumberOfCards()).isEqualTo(2);
+    assertThat(underTest.getNumberOfCards()).isEqualTo(1);
   }
 
   @Test
