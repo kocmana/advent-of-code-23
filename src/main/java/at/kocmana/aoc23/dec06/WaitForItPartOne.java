@@ -2,13 +2,22 @@ package at.kocmana.aoc23.dec06;
 
 import static at.kocmana.aoc23.common.Parser.toNumberList;
 
+import at.kocmana.aoc23.common.ResourceToString;
 import java.util.List;
 import java.util.stream.IntStream;
 
-public class WaitForIt {
+public class WaitForItPartOne {
 
   public static void main(String[] args) {
+    var puzzleInput = ResourceToString.from("dec06", "WaitForItPartOne.txt");
+    var result = generateNumberOfWays(puzzleInput);
+    System.out.printf("Result: %d", result);
+  }
 
+  static long generateNumberOfWays(String input) {
+    return parseRaces(input).stream()
+        .map(WaitForItPartOne::assessNumberOfPossibleWins)
+        .reduce(1L, (i, j) -> i * j);
   }
 
   static List<Race> parseRaces(String input) {
@@ -22,7 +31,7 @@ public class WaitForIt {
     assert (times.size() == distances.size());
 
     return IntStream.range(0, times.size())
-        .mapToObj(i -> new Race(times.get(i), distances.get(i)))
+        .mapToObj(i -> new Race(times.get((int) i), distances.get((int) i)))
         .toList();
   }
 
@@ -47,12 +56,6 @@ public class WaitForIt {
 
   static boolean isWin(int distanceToBeat, int distance) {
     return distanceToBeat < distance;
-  }
-
-  long generateNumberOfWays(String input) {
-    return parseRaces(input).stream()
-        .map(WaitForIt::assessNumberOfPossibleWins)
-        .reduce(1L, (i, j) -> i * j);
   }
 }
 
