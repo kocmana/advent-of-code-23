@@ -28,7 +28,7 @@ Solutions for the https://adventofcode.com/2023/:[advent of code] of 2023.
 |03| |
 |04|👍|👍
 |05| |
-|06| |
+|06|👍|👍
 |07| |
 |08| |
 |09| |
