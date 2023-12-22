@@ -13,6 +13,7 @@ record Power(
       return this.type.compareTo(other.type);
     }
     return IntStream.range(0, relevantCards.size())
+        .sequential()
         .map(i -> this.relevantCards.get(i).compareTo(other.relevantCards.get(i)))
         .filter(comparison -> comparison != 0)
         .findFirst()
