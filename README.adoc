@@ -15,11 +15,11 @@ endif::[]
 toc::[]
 
 == About
-Solutions for the https://adventofcode.com/2023/:[advent of code] of 2023.
+Solutions for the https://adventofcode.com/2023/[advent of code] of 2023.
 
 == Solutions
 
-[cols="^h,^1,^1"]
+[.center,width="50%", cols="^h,^1,^1"]
 |===
 | Day | Challenge 1 | Challenge 2
 
