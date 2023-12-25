@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
 
-class CamelCardsTest {
+class CamelCardsTestPartOne {
 
 
   static Stream<Tuple<Hand, Power>> generateCanAssessPowerTestValues() {

@@ -30,7 +30,7 @@ Solutions for the https://adventofcode.com/2023/:[advent of code] of 2023.
 |05| |
 |06|👍|👍
 |07| |
-|08| |
+|08|👍|👍*
 |09| |
 |10| |
 |11| |
@@ -48,3 +48,5 @@ Solutions for the https://adventofcode.com/2023/:[advent of code] of 2023.
 |23| |
 |24| |
 |===
+
+__* read up on better solutions before commiting__
