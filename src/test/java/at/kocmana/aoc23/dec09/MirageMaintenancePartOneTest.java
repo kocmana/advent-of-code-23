@@ -5,7 +5,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 import java.util.List;
 import org.junit.jupiter.api.Test;
 
-class MirageMaintenanceTest {
+class MirageMaintenancePartOneTest {
 
   @Test
   void canParseLine() {
@@ -13,7 +13,7 @@ class MirageMaintenanceTest {
     var input = "0 3 6 9 12 15";
 
     //when
-    var actualResult = MirageMaintenance.parseLine(input);
+    var actualResult = MirageMaintenancePartOne.parseLine(input);
 
     //then
     assertThat(actualResult).hasSize(6)
@@ -26,7 +26,7 @@ class MirageMaintenanceTest {
     var valuesToReduce = List.of(0, 3, 6, 9, 12, 15);
 
     //when
-    var actualResult = MirageMaintenance.reduce(valuesToReduce);
+    var actualResult = MirageMaintenancePartOne.reduce(valuesToReduce);
 
     //then
     assertThat(actualResult).hasSize(valuesToReduce.size() - 1)
@@ -39,7 +39,7 @@ class MirageMaintenanceTest {
     var valuesToAssess = List.of(3, 6, 9, 12);
 
     //when
-    var actualResult = MirageMaintenance.canBeFurtherReduced(valuesToAssess);
+    var actualResult = MirageMaintenancePartOne.canBeFurtherReduced(valuesToAssess);
 
     //then
     assertThat(actualResult).isTrue();
@@ -51,7 +51,7 @@ class MirageMaintenanceTest {
     var valuesToAssess = List.of(0, 0, 0, 0);
 
     //when
-    var actualResult = MirageMaintenance.canBeFurtherReduced(valuesToAssess);
+    var actualResult = MirageMaintenancePartOne.canBeFurtherReduced(valuesToAssess);
 
     //then
     assertThat(actualResult).isFalse();
@@ -63,7 +63,7 @@ class MirageMaintenanceTest {
     var lineToInferValueFrom = List.of(10, 13, 16, 21, 30, 45);
 
     //when
-    var actualResult = MirageMaintenance.inferNextInLine(lineToInferValueFrom);
+    var actualResult = MirageMaintenancePartOne.inferNextInLine(lineToInferValueFrom);
 
     //then
     assertThat(actualResult).isEqualTo(68);
@@ -79,7 +79,7 @@ class MirageMaintenanceTest {
         """;
 
     //when
-    var actualResult = MirageMaintenance.play(testInput);
+    var actualResult = MirageMaintenancePartOne.play(testInput);
 
     //then
     assertThat(actualResult).isEqualTo(114);

@@ -5,7 +5,7 @@ import at.kocmana.aoc23.common.ResourceToString;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MirageMaintenance {
+public class MirageMaintenancePartTwo {
 
   public static void main(String[] args) {
     var puzzleInput = ResourceToString.from("dec09", "MirageMaintenance.txt");
@@ -15,11 +15,11 @@ public class MirageMaintenance {
 
   static int play(String input) {
     return parseInput(input).stream()
-        .map(MirageMaintenance::inferNextInLine)
+        .map(MirageMaintenancePartTwo::inferPreviousInLine)
         .reduce(0, (i, j) -> i + j);
   }
 
-  static int inferNextInLine(List<Integer> list) {
+  static int inferPreviousInLine(List<Integer> list) {
     var currentList = list;
     var reductions = new ArrayList<List<Integer>>();
     //reduce downward
@@ -32,14 +32,14 @@ public class MirageMaintenance {
     for (int i = 0; i < reductions.size() - 1; i++) {
       var last = reductions.get(reductions.size() - i - 1);
       var secondToLast = reductions.get(reductions.size() - i - 2);
-      secondToLast.add(last.getLast() + secondToLast.getLast());
+      secondToLast.addFirst(secondToLast.getFirst() - last.getFirst());
     }
-    return list.getLast() + reductions.getFirst().getLast();
+    return list.getFirst() - reductions.getFirst().getFirst();
   }
 
   static List<List<Integer>> parseInput(String input) {
     return input.lines()
-        .map(MirageMaintenance::parseLine)
+        .map(MirageMaintenancePartTwo::parseLine)
         .toList();
   }
 
